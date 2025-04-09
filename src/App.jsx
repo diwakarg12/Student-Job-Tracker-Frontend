@@ -5,6 +5,8 @@ import Login from './Pages/Login';
 import ContactUs from './Pages/ContactUs';
 import Profile from './Pages/Profile';
 import appStore from './redux/AppStore';
+import NotFound from './Pages/NotFound';
+import Body from './Pages/Body';
 
 function App() {
 
@@ -12,13 +14,14 @@ function App() {
     <Provider store={appStore}>
       <BrowserRouter basename='/'>
         <Routes>
-          <Route path='/' element={<Home />}>
+          <Route path='/' element={<Body />}>
             <Route path='/' element={<Home />} />
             <Route path='/login' element={<Login/>} />
             <Route path='/Signup' element={<Login/>} />
             <Route path='/contact' element={<ContactUs/>} />
             <Route path='/profile/:userId' element={<Profile/>} />
           </Route>
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
     </Provider>
