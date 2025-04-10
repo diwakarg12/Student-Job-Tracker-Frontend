@@ -7,11 +7,11 @@ const jobSlice = createSlice({
         addJobs: (state, actions) => {
             return actions.payload;
         },
-        removeJobs: (state, action) => {
+        removeJob: (state, action) => {
             return state.filter(data => data._id !==action.payload);
         },
     },
 });
 
-export const {addJobs, removeJobs} = jobSlice.actions;
+export const {addJobs, removeJob} = jobSlice.actions;
 export default jobSlice.reducer;

@@ -93,6 +93,7 @@ const Profile = () => {
             >
               Update Profile
             </button>
+            <Link to="/update-password" className="text-sm font-semibold font-serif">Click here to update Your Password</Link>
             {error && <p className="border font-medium text-lg text-red-700 text-center">{error}</p>}
           </div> 
         </div>
