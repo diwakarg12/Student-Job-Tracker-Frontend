@@ -1,32 +1,38 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 
 const UpdatePassword = () => {
     const [loading, setLoading] = useState(false);
     const [currentPass, setCurrentPass] = useState('');
     const [newPass, setNewPass] = useState('');
 
-    const navigate = useNavigate();
+    // const navigate = useNavigate();
 
-    const handleUpdatePassword = async(e) => {
-        try {
-            e.preventDefault();
-            setLoading(true);
-			console.log(currentPass, newPass)
-            const res = await axios.post('http://localhost:3000/auth/change-password', {currentPass, UpdatePassword}, {withCredentials: true});
-            console.log('update-passowrd', res?.data?.user);
-            setLoading(false);
-			navigate('/login')
-        } catch (error) {
-            console.log('Error: ',error);
-			setLoading(false);
-        }
+    const handleUpdatePassword = async (e) => {
+    try {
+        e.preventDefault();
+        setLoading(true);
+        console.log(currentPass, newPass);
+        // Ensure the correct property name is used
+        const res = await axios.patch('http://localhost:3000/profile/change-password', {
+            currentPass, // Correct property name
+            newPass       // Correct property name
+        }, { withCredentials: true });
+
+        console.log('update-password', res?.data?.user);
+        setLoading(false);
+        // navigate('/login'); // Optional: navigate if needed
+    } catch (error) {
+        console.log('Error: ', error);
+        setLoading(false);
     }
+};
+
   return (
-    <div className=''>
+    <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-500 to-pink-500'>
         <form
-			className='space-y-6'
+			className='space-y-6 bg-white p-10 rounded-sm'
 			onSubmit={handleUpdatePassword}
 		>
 			<h2 className='text-center text-3xl font-extrabold text-pink-500'>

@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import axios from "axios";
 import ProfileImageUpload from "../components/ProfileImageUpload";
 import InputField from "../components/InputField";
@@ -12,15 +13,17 @@ const Profile = () => {
   const user = useSelector(store => store.auth.user)
   const [update, setUpdate] = useState(user || [])
   const [error, setError] = useState("")
-  const [image, setImage] = useState(user?.profileUrl);
+  const [image, setImage] = useState(user?.profile);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   console.log("user", update)
 
-  if(!user){
-    navigate('/login')
+useEffect(() => {
+  if (!user) {
+    navigate('/login');
   }
+}, [user, navigate]);
 
   const handleChange = (e) => {
     const {name, value} = e.target;
@@ -33,36 +36,42 @@ const Profile = () => {
   console.log(update);
 
   const handleImageChange = (event) => {
-    const file = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        const imageUrl = reader.result;
-        setImage(imageUrl);
-        console.log('image', image)
-        setUpdate(prevData =>({
-          ...prevData,
-          profileUrl: image
-        }));
-      };
-      reader.readAsDataURL(file);
-    }
-  };
-
-  const handleUpdate = async() => {
-    setLoading(true);
-    try {
-      const {email, password, _id, __v, updatedAt, createdAt, ...updatableData} = update;
-      const res = await axios.patch('http://localhost:3000/profile/edit', updatableData, {withCredentials: true});
-      console.log('Updated Data', res?.data?.user);
-      dispatch(login(res?.data?.user))
-      setLoading(false);
-      navigate('/');
-    } catch (error) {
-      setError(`Error: ${error}`);
-      setLoading(false);
-    }
+  const file = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      const imageUrl = reader.result;
+      setImage(imageUrl);
+      setUpdate(prevData => ({
+        ...prevData,
+        profile: imageUrl,
+      }));
+    };
+    reader.readAsDataURL(file);
   }
+};
+
+const handleUpdate = async () => {
+  setLoading(true);
+  try {
+    // remove fields you don’t want to send
+    const { email, password, _id, __v, updatedAt, createdAt, ...updatableData } = update;
+
+    const res = await axios.patch('http://localhost:3000/profile/edit', updatableData, {
+      withCredentials: true,
+    });
+
+    console.log('Updated Data', res?.data?.user);
+    dispatch(login(res?.data?.user));
+    setLoading(false);
+    navigate('/');
+  } catch (error) {
+    console.error(error);
+    console.error("Update Error:", error.response?.data || error.message);
+    setError(`Error: ${error?.response?.data?.message || error.message}`);
+    setLoading(false);
+  }
+};
 
   return (
     <div className="p-10 min-h-screen bg-gradient-to-br from-red-500 to-pink-500 flex flex-col">
@@ -81,7 +90,7 @@ const Profile = () => {
             />
             {/* Age */}
             <InputField label={'Age'} name={"age"} value={update.age} onChange={handleChange}     
-              inputType={'number'} 
+              inputType={'text'} 
             />
             {/* Gender */}
             <InputDropdown label={'Gender'} name={"gender"} value={update.gender} 

@@ -19,13 +19,13 @@ function App() {
       <BrowserRouter basename='/'>
         <Routes>
           <Route path='/' element={<Body />}>
-            <Route path='/login' element={<ApliedJobs />} />
-            <Route path='/' element={<Login/>} />
+            <Route path='/' element={<ApliedJobs />} />
+            <Route path='/login' element={<Login/>} />
             <Route path='/add-job' element={<JobApplication />}/>
             <Route path='/job-edit/:jobId' element={<UpdateJobStatus />} />
             <Route path='/Signup' element={<Login/>} />
             <Route path='/contact' element={<ContactUs/>} />
-            <Route path='/profile/:userId' element={<Profile/>} />
+            <Route path='/profile' element={<Profile/>} />
             <Route path='/update-password' element={<UpdatePassword />} />
           </Route>
           <Route path="*" element={<NotFound />} />

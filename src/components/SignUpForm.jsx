@@ -5,8 +5,7 @@ import { login } from '../redux/authSlice';
 import { useNavigate } from "react-router-dom";
 
 const SignUpForm = () => {
-	const [firstName, setFirstName] = useState("");
-    const [lastName, setLastName] = useState("");
+	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [gender, setGender] = useState("");
@@ -19,7 +18,7 @@ const SignUpForm = () => {
         try {
             e.preventDefault();
             setLoading(true);
-            const res = await axios.post('http://localhost:3000/auth/signup', {firstName, lastName, email, password, gender, age}, {withCredentials: true})
+            const res = await axios.post('http://localhost:3000/auth/signup', {name, email, password, gender, age}, {withCredentials: true})
             console.log('Signup', res?.data?.user);
 			dispatch(login(res.data.user));
             setLoading(false);
@@ -40,35 +39,17 @@ const SignUpForm = () => {
 			</h2>
 			{/* First Name */}
 			<div>
-				<label htmlFor='firstName' className='block text-sm font-medium text-gray-700'>
-					First Name
+				<label htmlFor='name' className='block text-sm font-medium text-gray-700'>
+					Name
 				</label>
 				<div className='mt-1'>
 					<input
-						id='firstName'
-						name='firstName'
+						id='name'
+						name='name'
 						type='text'
 						required
-						value={firstName}
-						onChange={(e) => setFirstName(e.target.value)}
-						className='bg-white text-black appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm'
-					/>
-				</div>
-			</div>
-
-            {/* NAME */}
-			<div>
-				<label htmlFor='lastName' className='block text-sm font-medium text-gray-700'>
-					Last Name
-				</label>
-				<div className='mt-1'>
-					<input
-						id='lastName'
-						name='lastName'
-						type='text'
-						required
-						value={lastName}
-						onChange={(e) => setLastName(e.target.value)}
+						value={name}
+						onChange={(e) => setName(e.target.value)}
 						className='bg-white text-black appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-pink-500 focus:border-pink-500 sm:text-sm'
 					/>
 				</div>
@@ -121,7 +102,7 @@ const SignUpForm = () => {
 					<input
 						id='age'
 						name='age'
-						type='number'
+						type='text'
 						required
 						value={age}
 						onChange={(e) => setAge(e.target.value)}
