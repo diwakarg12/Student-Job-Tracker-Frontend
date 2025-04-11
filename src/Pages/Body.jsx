@@ -13,7 +13,7 @@ const Body = () => {
 
     const fetchUser = async() => {
         try {
-            const res = await axios.get('http://localhost:3000/profile/view', {withCredentials: true});
+            const res = await axios.get('https://student-job-tracker-backend-production-a06d.up.railway.app/profile/view', {withCredentials: true});
             dispatch(login(res?.data?.user));
         } catch (error) {
             if (error.status == 401 || error.status == 404) {

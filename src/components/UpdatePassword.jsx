@@ -15,7 +15,7 @@ const UpdatePassword = () => {
         setLoading(true);
         console.log(currentPass, newPass);
         // Ensure the correct property name is used
-        const res = await axios.patch('http://localhost:3000/profile/change-password', {
+        const res = await axios.patch('https://student-job-tracker-backend-production-a06d.up.railway.app/profile/change-password', {
             currentPass, // Correct property name
             newPass       // Correct property name
         }, { withCredentials: true });

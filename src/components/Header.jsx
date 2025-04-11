@@ -36,7 +36,7 @@ function ResponsiveAppBar() {
 
   const handleLogout = async() => {
     try {
-      const res = await axios.post('http://localhost:3000/auth/logout', {}, {withCredentials: true})
+      const res = await axios.post('https://student-job-tracker-backend-production-a06d.up.railway.app/auth/logout', {}, {withCredentials: true})
       dispatch(logout(res.data.user))
       navigate('/login');
     } catch (error) {

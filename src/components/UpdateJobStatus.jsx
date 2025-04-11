@@ -31,7 +31,7 @@ const UpdateJobStatus = () => {
 
     const handleUpdate = async () => {
       try {
-          const res = await axios.patch(`http://localhost:3000/job/updateStatus/${jobId}`, { status }, { withCredentials: true });
+          const res = await axios.patch(`https://student-job-tracker-backend-production-a06d.up.railway.app/job/updateStatus/${jobId}`, { status }, { withCredentials: true });
           console.log('Result', res);
           dispatch(updateJob(res?.data?.job));
           navigate('/');

@@ -15,7 +15,7 @@ const ApliedJobs = () => {
 
     const fetchAllJobs = async () => {
         try {
-            const res = await axios.get('http://localhost:3000/job/getAllJobs', { withCredentials: true });
+            const res = await axios.get('https://student-job-tracker-backend-production-a06d.up.railway.app/job/getAllJobs', { withCredentials: true });
             const data = res?.data?.appliedJobs || res?.data?.jobs || [];
             dispatch(addJobs(data));
         } catch (error) {
@@ -25,7 +25,7 @@ const ApliedJobs = () => {
 
     const handleDeleteJobEntry = async (_id) => {
         try {
-            await axios.delete(`http://localhost:3000/job/deleteJobApplication/${_id}`, { withCredentials: true });
+            await axios.delete(`https://student-job-tracker-backend-production-a06d.up.railway.app/job/deleteJobApplication/${_id}`, { withCredentials: true });
             dispatch(removeJob(_id));
             fetchAllJobs();
         } catch (error) {

@@ -16,7 +16,7 @@ const JobApplication = () => {
   const handleJobApply = async() => {
     try {
       setLoading(true);
-      const res = await axios.post('http://localhost:3000/job/apply', {company, role, location, salary}, {withCredentials: true});
+      const res = await axios.post('https://student-job-tracker-backend-production-a06d.up.railway.app/job/apply', {company, role, location, salary}, {withCredentials: true});
       console.log('jobData', res?.data?.job);
       setLoading(false);
       navigate('/')

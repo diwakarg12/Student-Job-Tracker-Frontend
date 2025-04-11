@@ -18,7 +18,7 @@ const SignUpForm = () => {
         try {
             e.preventDefault();
             setLoading(true);
-            const res = await axios.post('http://localhost:3000/auth/signup', {name, email, password, gender, age}, {withCredentials: true})
+            const res = await axios.post('https://student-job-tracker-backend-production-a06d.up.railway.app/auth/signup', {name, email, password, gender, age}, {withCredentials: true})
             console.log('Signup', res?.data?.user);
 			dispatch(login(res.data.user));
             setLoading(false);
