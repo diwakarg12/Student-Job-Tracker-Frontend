@@ -4,7 +4,7 @@ import Home from './Pages/Home';
 import Login from './Pages/Login';
 import ContactUs from './Pages/ContactUs';
 import Profile from './Pages/Profile';
-import appStore from './redux/AppStore';
+import appStore from './redux/appStore';
 import NotFound from './Pages/NotFound';
 import Body from './Pages/Body';
 import UpdatePassword from './components/UpdatePassword';

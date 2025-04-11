@@ -54,9 +54,8 @@ useEffect(() => {
 const handleUpdate = async () => {
   setLoading(true);
   try {
-    // remove fields you don’t want to send
     const { email, password, _id, __v, updatedAt, createdAt, ...updatableData } = update;
-
+    
     const res = await axios.patch('https://student-job-tracker-backend-production-a06d.up.railway.app/profile/edit', updatableData, {
       withCredentials: true,
     });
