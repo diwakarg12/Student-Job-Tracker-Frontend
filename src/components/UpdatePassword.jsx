@@ -1,13 +1,13 @@
 import axios from 'axios';
 import React, { useState } from 'react'
-// import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const UpdatePassword = () => {
     const [loading, setLoading] = useState(false);
     const [currentPass, setCurrentPass] = useState('');
     const [newPass, setNewPass] = useState('');
 
-    // const navigate = useNavigate();
+    const navigate = useNavigate();
 
     const handleUpdatePassword = async (e) => {
     try {
@@ -22,7 +22,7 @@ const UpdatePassword = () => {
 
         console.log('update-password', res?.data?.user);
         setLoading(false);
-        // navigate('/login'); // Optional: navigate if needed
+        navigate('/');
     } catch (error) {
         console.log('Error: ', error);
         setLoading(false);
