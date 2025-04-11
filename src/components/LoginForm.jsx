@@ -21,7 +21,7 @@ const LoginForm = () => {
             console.log('login', res.data.user);
             dispatch(login(res?.data?.user));
             setLoading(false);
-			navigate('/profile')
+			navigate('/')
         } catch (error) {
             console.log('Error: ',error);
 			setLoading(false);

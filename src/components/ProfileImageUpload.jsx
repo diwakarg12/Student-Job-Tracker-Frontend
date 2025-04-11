@@ -2,8 +2,8 @@
 const ProfileImageUpload = ({handleImageChange, image}) => {
 
   return (
-    <div className="flex h-44 w-44 flex-col justify-center items-center mb-2">
-      <div className="relative w-44 h-44">
+    <div className="flex w-24 h-24 sm:h-44 sm:w-44 flex-col justify-center items-center mb-2">
+      <div className="relative sm:w-44 sm:h-44">
         <input 
           type="file" 
           accept="image/*" 
@@ -11,7 +11,7 @@ const ProfileImageUpload = ({handleImageChange, image}) => {
           className="absolute inset-0 opacity-0 cursor-pointer w-full h-full rounded-full" 
         />
         
-        <div className="w-44 h-44 rounded-full overflow-hidden border-4 border-gray-300">
+        <div className="w-24 h-24 sm:h-44 sm:w-44 rounded-full overflow-hidden border-4 border-gray-300">
           {image ? (
             <img 
               src={image} 

@@ -9,7 +9,7 @@ import { ImProfile } from "react-icons/im";
 const JobCard = ({job, handleDeleteJobEntry}) => {
     const {_id, company, designation, salary, location, dateOfApplication, status} = job;
   return (
-    <div className='shadow-xl bg-teal-100 w-[23%]'>
+    <div className='shadow-xl bg-teal-100 w-full sm:w-[47%] md:w-1/3 lg:w-[23%]'>
         <div className='flex items-center justify-between mx-2.5 my-2'>
             <p className={`w-fit px-2 rounded-xs ${status=="Applied"?"bg-blue-500":status=="Interview"?"bg-orange-400":status=="Offer"?"bg-green-600":status=="Rejected"?"bg-red-500":"bg-transparent"}`}>{status}</p>
             <div className='flex items-center gap-x-2'>

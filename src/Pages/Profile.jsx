@@ -74,25 +74,21 @@ const handleUpdate = async () => {
 };
 
   return (
-    <div className="p-10 min-h-screen bg-gradient-to-br from-red-500 to-pink-500 flex flex-col">
-      <div className='flex-grow flex flex-col justify-center px-4 sm:px-6 lg:px-8'>
+    <div className="sm:p-10 min-h-screen bg-gradient-to-br from-red-500 to-pink-500 flex flex-col">
+      <div className='flex-grow flex flex-col justify-center px-4'>
         <div className='sm:mx-auto sm:w-full sm:max-w-md'>
 			    <h2 className='mt-6 text-center text-3xl font-extrabold text-gray-900'>Your Profile</h2>
 		    </div>
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
           <div className='relative bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10 border border-gray-200 space-y-4'>
             <p className="absolute top-2 left-4 text-red-600 text-xs">Click on the Image to change the Image</p>
-            {/* Image */}
             <ProfileImageUpload handleImageChange={handleImageChange} image={image} />
-            {/* Name */}
             <InputField label={'Name'} name={"name"} value={update.name} 
               onChange={handleChange} inputType={'text'} 
             />
-            {/* Age */}
             <InputField label={'Age'} name={"age"} value={update.age} onChange={handleChange}     
               inputType={'text'} 
             />
-            {/* Gender */}
             <InputDropdown label={'Gender'} name={"gender"} value={update.gender} 
               onChange={handleChange} options={['male', 'female', 'others']}
             />

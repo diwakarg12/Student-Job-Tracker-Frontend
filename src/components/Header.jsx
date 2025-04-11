@@ -52,7 +52,7 @@ function ResponsiveAppBar() {
 
   return (
     <AppBar position="static" sx={{backgroundColor: "black"}}>
-      <Container maxWidth="xl">
+      <Container maxWidth="2xl">
         <Toolbar disableGutters className='flex items-center justify-between'>
           <Link to={'/'} className="pl-2 text-2xl flex items-center">
             <Layers size={30} strokeWidth={'2.5px'} className="text-[#ff4081] transform -rotate-12" />
@@ -63,47 +63,58 @@ function ResponsiveAppBar() {
           {
             user ? (
               <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                {/* <p className='text-white font-xs'>Welcome {user.name}</p> */}
-                <Typography sx={{ textAlign: 'center', color: "white", marginRight: "5px" }}>Welcome {user.name}</Typography>
-                <Avatar alt="Remy Sharp" src={user.profile} />
-              </IconButton>
-            </Tooltip>
-            <Menu
-              sx={{ mt: '45px' }}
-              id="menu-appbar"
-              anchorEl={anchorElUser}
-              anchorOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
-              {settings.map(({ label, path, onClick }) => (
-                <MenuItem key={label} onClick={handleCloseUserMenu}>
-                  <Typography sx={{ textAlign: 'center' }}>
-                    {path ? (
-                      <Link to={path} className="text-black no-underline">
-                        {label}
-                      </Link>
-                    ) : (
-                      <button onClick={onClick} className="text-black w-full text-left">
-                        {label}
-                      </button>
-                    )}
-                  </Typography>
-                </MenuItem>
-              ))}
+                <Tooltip title="Open settings">
+                  <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                    <Typography 
+                      sx={{
+                        textAlign: 'center',
+                        color: 'white',
+                        mr: '5px',
+                        display: {
+                          xs: 'none',
+                          sm: 'block',
+                        },
+                      }}
+                    >
+                      Welcome {user.name}
+                    </Typography>
+                    <Avatar alt="Remy Sharp" src={user.profile} />
+                  </IconButton>
+                </Tooltip>
+                <Menu
+                  sx={{ mt: '45px' }}
+                  id="menu-appbar"
+                  anchorEl={anchorElUser}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={Boolean(anchorElUser)}
+                  onClose={handleCloseUserMenu}
+                >
+                  {settings.map(({ label, path, onClick }) => (
+                    <MenuItem key={label} onClick={handleCloseUserMenu}>
+                      <Typography sx={{ textAlign: 'center' }}>
+                        {path ? (
+                          <Link to={path} className="text-black no-underline">
+                            {label}
+                          </Link>
+                        ) : (
+                          <button onClick={onClick} className="text-black w-full text-left">
+                            {label}
+                          </button>
+                        )}
+                      </Typography>
+                    </MenuItem>
+                  ))}
 
-            </Menu>
-          </Box>
+                </Menu>
+              </Box>
             ) : (
               <Link className="btn px-4 py-1.5 rounded-sm text-lg font-bold text-white hover:bg-white hover:text-black" to={'/login'}>Login</Link>
             )

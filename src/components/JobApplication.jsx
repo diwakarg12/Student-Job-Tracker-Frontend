@@ -29,9 +29,9 @@ const JobApplication = () => {
 
   return (
     <div className='min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-red-500 to-pink-500'>
-        <h1 className='font-bold text-4xl text-center my-6 underline'>UPDATE JOB STATUS</h1>
-        <div className='w-1/2 bg-white shadow-xl rounded-lg p-8'>
-            <div className='flex items-center justify-center gap-x-4'>
+        <h1 className='font-bold text-2xl md:text-3xl lg:4xl 2xl:text-6xl text-center my-6 underline'>APPLY TO THE JOB</h1>
+        <div className='w-11/12 md:w-1/2 bg-white shadow-xl rounded-lg p-4 md:p-8'>
+            <div className='flex flex-col md:flex-row items-center justify-center gap-x-4'>
                  <InputField label={"Name"} inputType={"text"} value={user?.name} name={"name"} isDisabled={true} /> 
                  <InputField label={"Email"} inputType={"email"} value={user?.email} name={"email"} isDisabled={true} />
             </div>

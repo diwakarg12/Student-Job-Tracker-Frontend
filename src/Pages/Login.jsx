@@ -17,7 +17,7 @@ const Login = () => {
 
 					<div className='mt-8 text-center'>
 						<p className='text-sm text-gray-600'>
-							{isLogin ? "New to Swipe?" : "Already have an account?"}
+							{isLogin ? "New User?" : "Already have an account?"}
 						</p>
 
 						<button
